@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -76,6 +77,15 @@ Route::delete('/deleteCategory/{id}', [CategoryController::class, 'destroyCatego
 Route::get('/allusers', [UserController::class, 'show']);
 
 //organiser
-Route::get('/createEvent', function () {
-    return view('organiser.createEvent');
-});
+//Route::get('/createEvent', function () {
+//    return view('organiser.createEvent');
+//});
+
+//events
+Route::get('/createEvent', [EventController::class, 'showForm']);
+
+Route::post('/createEvent', [EventController::class, 'store']);
+
+Route::get('/allEvents', [EventController::class, 'AllEvents']);
+
+Route::delete('/deleteEvent/{id}', [EventController::class, 'deleteEvent']);
