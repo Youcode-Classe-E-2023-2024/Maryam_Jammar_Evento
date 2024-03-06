@@ -21,18 +21,18 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-//    public function store(Request $request)
-//    {
-//        $request->validate([
-//            'name' => 'required|string|max:255|unique:categories,name'
-//        ]);
-//
-//        Category::create([
-//            'name' => $request->name
-//        ]);
-//
-//        return redirect()->back();
-//    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name'
+        ]);
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->back();
+    }
 
     /**
      * Remove the specified resource from storage.
