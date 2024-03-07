@@ -116,20 +116,27 @@
                     <h1 class="text-4xl font-bold mb-4">{{$event->title}}</h1>
 {{--                    <p class="text-lg mb-6">Join us for an unforgettable evening of music with John Smith.</p>--}}
                     <div class="mb-6">
-                        <p class="text-xl font-bold mb-2">Date:</p>
+                        <p class="text-xl font-bold ">Date:</p>
                         <p class="text-lg">
                             {{ \Carbon\Carbon::parse($event->date)->format('l, F jS \a\t h:i A') }}
                         </p>
                     </div>
                     <div class="mb-6">
-                        <p class="text-xl font-bold mb-2">Location:</p>
-                        <p class="text-lg">{{$event->location}}</p>
+                        <p class="text-xl font-bold">Location: </p>
+                        <p class="text-lg flex">
+                            <svg class="w-6 h-6 text-black dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                      d="M12 2a8 8 0 0 1 6.6 12.6l-.1.1-.6.7-5.1 6.2a1 1 0 0 1-1.6 0L6 15.3l-.3-.4-.2-.2v-.2A8 8 0 0 1 11.8 2Zm3 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                            {{$event->location}}</p>
 {{--                        <p class="text-lg">Region de {{$event->location}}</p>--}}
                     </div>
                     <div class="mb-6">
-                        <p class="text-xl font-bold mb-2">Tickets:</p>
-                        <p class="text-lg">$35 - General Admission</p>
-                        <p class="text-lg">$75 - VIP</p>
+                        <p class="text-xl font-bold">Tickets:</p>
+                        <p class="text-lg">Place disponible: {{$event->nbr_place}} place</p>
+                        <p class="text-lg">Price: {{$event->price}} DH</p>
                     </div>
                     <button
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -138,8 +145,8 @@
                     </button>
                 </div>
             </div>
-            <h2>Events description</h2>
-            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            <h2 class="font-bold text-2xl mt-4">Event description</h2>
+            <p class="mt-2 text-md">{{$event->description}}</p>
         </div>
     </div>
 </main>

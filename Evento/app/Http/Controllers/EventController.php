@@ -26,10 +26,10 @@ class EventController extends Controller
         return view('organiser.allEvents', compact('events'));
     }
 
-    public function ShowEvent()
+    public function ShowEventDescription($id)
     {
-        $events = Event::all();
-        return view('organiser.allEvents', compact('events'));
+        $event = Event::find($id);
+        return view('organiser.description', compact('event'));
     }
 
     /**
