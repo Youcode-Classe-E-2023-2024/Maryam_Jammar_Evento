@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewEventNotification;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 class EventController extends Controller
 {
@@ -77,8 +81,25 @@ class EventController extends Controller
             'category' => $request->category,
         ]);
 
+        $this->sendEmailToAdmin();
+
         return redirect('/allEvents');
     }
+
+
+    private function sendEmailToAdmin()
+    {
+        $adminRole = Role::where('name', 'admin')->first();
+
+        if ($adminRole) {
+            $admins = $adminRole->users;
+
+            foreach ($admins as $admin) {
+                Mail::to($admin->email)->send(new NewEventNotification());
+            }
+        }
+    }
+
 
     /**
      * Display the specified resource.
