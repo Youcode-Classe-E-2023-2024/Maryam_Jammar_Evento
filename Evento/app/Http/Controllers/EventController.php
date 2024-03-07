@@ -122,6 +122,6 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->back();
+        return redirect('/allEvents');
     }
 }

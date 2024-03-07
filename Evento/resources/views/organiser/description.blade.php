@@ -110,11 +110,32 @@
         <div class="container mx-auto px-4 py-8 flex flex-col">
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
-                    <img class="rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b" alt="Concert Image">
+                    <img class="rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b"
+                         alt="Concert Image">
                 </div>
-                <div class="w-full text-justify lg:w-6/12">
-                    <h1 class="text-4xl font-bold mb-4">{{$event->title}}</h1>
-{{--                    <p class="text-lg mb-6">Join us for an unforgettable evening of music with John Smith.</p>--}}
+                <div class="w-full pl-12 text-justify lg:w-6/12">
+                    <div class="flex justify-between mr-8">
+                        <h1 class="text-4xl font-bold mb-4">{{$event->title}}</h1>
+                        <div class="relative">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer menuIcon"
+                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                                      d="M12 6h0m0 6h0m0 6h0"/>
+                            </svg>
+                            <div
+                                class="hidden absolute top-0 right-0 mt-6 mr-2 flex flex-col font-bold menuOptions">
+                                <div class="flex">
+                                    <a href="/updateEvent/{{$event->id}}" class="mr-2">Update</a>
+                                </div>
+                                <form action="/deleteEvent/{{$event->id}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-6">
                         <p class="text-xl font-bold ">Date:</p>
                         <p class="text-lg">
@@ -131,7 +152,7 @@
                                       clip-rule="evenodd"/>
                             </svg>
                             {{$event->location}}</p>
-{{--                        <p class="text-lg">Region de {{$event->location}}</p>--}}
+                        {{--                        <p class="text-lg">Region de {{$event->location}}</p>--}}
                     </div>
                     <div class="mb-6">
                         <p class="text-xl font-bold">Tickets:</p>
@@ -146,7 +167,7 @@
                 </div>
             </div>
             <h2 class="font-bold text-2xl mt-4">Event description</h2>
-            <p class="mt-2 text-md">{{$event->description}}</p>
+            <p class="mt-2 text-md text-justify">{{$event->description}}</p>
         </div>
     </div>
 </main>
@@ -165,6 +186,24 @@
         });
     });
 </script>
+
+<script>
+    // Récupérer tous les éléments avec la classe menuIcon
+    const menuIcons = document.querySelectorAll('.menuIcon');
+
+    // Pour chaque icône du menu, ajouter un écouteur d'événement de clic
+    menuIcons.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            // Trouver le menu des options correspondant à l'icône du menu
+            const menuOptions = icon.nextElementSibling;
+
+            // Afficher ou masquer le menu des options
+            menuOptions.classList.toggle('hidden');
+        });
+    });
+</script>
+
+
 </body>
 
 
