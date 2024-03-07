@@ -118,7 +118,8 @@
                 @foreach($events as $event)
                     <div class="bg-white rounded shadow-lg">
                         <div class="w-full h-64 bg-top bg-cover rounded-t"
-                             style="background-image: url(https://www.si.com/.image/t_share/MTY4MTkyMjczODM4OTc0ODQ5/cfp-trophy-deitschjpg.jpg)"></div>
+                             style="background-image: url('{{ asset('storage/' . $event->image) }}')">
+                        </div>
                         <div class="flex flex-col w-full h-44 md:flex-row">
                             <div
                                 class="flex flex-row justify-around p-2 font-bold leading-none text-white uppercase bg-black rounded-b md:flex-col md:items-center md:justify-center md:w-24">
@@ -152,7 +153,8 @@
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
                                                       d="M12 6h0m0 6h0m0 6h0"/>
                                             </svg>
-                                            <div class="hidden absolute top-0 right-0 mt-6 mr-2 flex flex-col font-bold menuOptions">
+                                            <div
+                                                class="hidden absolute top-0 right-0 mt-6 mr-2 flex flex-col font-bold menuOptions">
                                                 <div class="flex">
                                                     {{-- Update event --}}
                                                     <a href="/updateEvent/{{$event->id}}" class="mr-2">Update</a>
@@ -166,7 +168,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
 
                                 </div>
