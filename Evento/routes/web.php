@@ -89,3 +89,8 @@ Route::post('/createEvent', [EventController::class, 'store']);
 Route::get('/allEvents', [EventController::class, 'AllEvents']);
 
 Route::delete('/deleteEvent/{id}', [EventController::class, 'deleteEvent']);
+
+Route::get('/updateEvent/{id}', [EventController::class, 'editEvent']);
+
+Route::post('/updateEvent/{id}', [EventController::class, 'updateEvent']);
+
