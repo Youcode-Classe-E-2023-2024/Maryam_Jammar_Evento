@@ -26,6 +26,12 @@ class EventController extends Controller
         return view('organiser.allEvents', compact('events'));
     }
 
+    public function ShowEvent()
+    {
+        $events = Event::all();
+        return view('organiser.allEvents', compact('events'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */

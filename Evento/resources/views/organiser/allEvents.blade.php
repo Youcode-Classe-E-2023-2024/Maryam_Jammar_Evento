@@ -111,70 +111,46 @@
         href="/createEvent">
         Add event
     </a>
-    <div class="px-6 py-8">
+    <div class="px-6 py-24">
         <div class="mx-auto">
-            <!-- component -->
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
-                @foreach($events as $event)
-                    <div class="bg-white rounded shadow-lg">
-                        <div class="w-full h-64 bg-top bg-cover rounded-t"
-                             style="background-image: url('{{ asset('storage/' . $event->image) }}')">
-                        </div>
-                        <div class="flex flex-col w-full h-44 md:flex-row">
+            <div class="max-w-screen-xl p-5 mx-auto dark:bg-gray-800 dark:text-gray-100">
+                <div class="grid grid-cols-1 gap-5 lg:grid-cols-4 sm:grid-cols-2">
+                    @foreach($events as $event)
+
+                        <div
+                            class="text-white relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-gray-500"
+                            style="background-image: url(&quot;https://source.unsplash.com/random/240x320&quot;);">
                             <div
-                                class="flex flex-row justify-around p-2 font-bold leading-none text-white uppercase bg-black rounded-b md:flex-col md:items-center md:justify-center md:w-24">
-                                <div class="md:text-lg">{{ \Carbon\Carbon::parse($event->date)->format('j') }}</div>
-                                <div class="md:text-xl">{{ \Carbon\Carbon::parse($event->date)->format('F') }}</div>
-                                <div class="md:text-lg">{{ date('g:i A', strtotime($event->time)) }}</div>
-                            </div>
-                            <div class="p-4 font-normal text-gray-800 md:w-72 flex flex-col justify-around">
-                                <div>
-                                    <h1 class="mb-2 text-2xl font-bold leading-none tracking-tight text-gray-800">{{$event->title}}</h1>
-                                    <p class="leading-normal text-justify text-sm">{{ Str::limit($event->description, 100) }}</p>
-                                </div>
-                                <div class="flex flex-row items-center mt-2 text-gray-700 text-xs">
-                                    <div class="w-1/2 font-bold flex">
-                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                            <path fill-rule="evenodd"
-                                                  d="M12 2a8 8 0 0 1 6.6 12.6l-.1.1-.6.7-5.1 6.2a1 1 0 0 1-1.6 0L6 15.3l-.3-.4-.2-.2v-.2A8 8 0 0 1 11.8 2Zm3 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-
-                                        <div class="mt-2">
-                                            {{$event->location}}
-                                        </div>
-                                    </div>
-                                    <div class="w-full flex justify-end">
-                                        <div class="relative">
-                                            <svg class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer menuIcon"
-                                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
-                                                      d="M12 6h0m0 6h0m0 6h0"/>
-                                            </svg>
-                                            <div
-                                                class="hidden absolute top-0 right-0 mt-6 mr-2 flex flex-col font-bold menuOptions">
-                                                <div class="flex">
-                                                    {{-- Update event --}}
-                                                    <a href="/updateEvent/{{$event->id}}" class="mr-2">Update</a>
-                                                </div>
-                                                {{-- Delete event --}}
-                                                <form action="/deleteEvent/{{$event->id}}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
+                                class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via-transparent dark:from-gray-900 dark:to-gray-900"></div>
+                            <div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-2 mt-3">
+                                <a rel="noopener noreferrer" href="#"
+                                   class="px-3 py-2 text-lg font-semibold tracki uppercase dark:text-gray-100 bgundefined">{{$event->title}}</a>
+                                <div class="flex flex-col justify-start text-center dark:text-gray-100">
+                                    <span
+                                        class="text-3xl font-semibold leadi tracki">{{ \Carbon\Carbon::parse($event->date)->format('j') }}</span>
+                                    <span
+                                        class="leadi uppercase">{{ \Carbon\Carbon::parse($event->date)->format('F') }}</span>
                                 </div>
                             </div>
+                            <h2 class="z-10 p-5">
+                                <a rel="noopener noreferrer" href="/description/{{$event->id}}"
+                                   class="font-medium text-md hover:underline dark:text-gray-100">{{ Str::limit($event->description, 50) }}</a>
+
+                                <div class="w-full font-bold flex mt-4">
+                                    <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                              d="M12 2a8 8 0 0 1 6.6 12.6l-.1.1-.6.7-5.1 6.2a1 1 0 0 1-1.6 0L6 15.3l-.3-.4-.2-.2v-.2A8 8 0 0 1 11.8 2Zm3 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+
+                                    <div class="">
+                                        {{$event->location}}
+                                    </div>
+                                </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
