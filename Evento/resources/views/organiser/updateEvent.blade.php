@@ -84,7 +84,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="mb-5">
+                                <label for="location" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Category
+                                </label>
+                                <select name="category" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <option value="" disabled>Choose a category</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" @if($category->id == $event->category) selected @endif>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
 
+
+                            </div>
                             <div class="mb-5">
                                 <label for="description" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Description
@@ -101,21 +113,22 @@
                                 </label>
                                 <div class="flex items-center space-x-6">
                                     <div class="flex items-center">
-                                        <input type="radio" name="reservation_type" value="manuel"  id="radioButton1"
-                                               class="h-5 w-5"/>
+                                        <input type="radio" name="reservation_type" value="manuel" id="radioButton1"
+                                               class="h-5 w-5" @if($event->reservation_type == 'manuel') checked @endif />
                                         <label for="radioButton1" class="pl-3 text-base font-medium text-[#07074D]">
                                             Manually
                                         </label>
                                     </div>
                                     <div class="flex items-center">
                                         <input type="radio" name="reservation_type" value="automatic" id="radioButton2"
-                                               class="h-5 w-5"/>
+                                               class="h-5 w-5" @if($event->reservation_type == 'automatic') checked @endif />
                                         <label for="radioButton2" class="pl-3 text-base font-medium text-[#07074D]">
                                             Automatically
                                         </label>
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- component -->
                             <div
