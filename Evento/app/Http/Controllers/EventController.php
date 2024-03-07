@@ -92,19 +92,16 @@ class EventController extends Controller
             'image' => 'required',
         ]);
 
-        Event::update([
-            'title' => $request->title,
-            'location' => $request->location,
-            'date' => $request->date,
-            'time' => $request->time,
-            'price' => $request->price,
-            'nbr_place' => $request->nbr_place,
-            'description' => $request->description,
-            'reservation_type' => $request->reservation_type,
-            'image' => $request->image,
-            'creator' => $user,
-        ]);
 
+        $event->title = $request['title'];
+        $event->location = $request['location'];
+        $event->date = $request['date'];
+        $event->time = $request['time'];
+        $event->price = $request['price'];
+        $event->nbr_place = $request['nbr_place'];
+        $event->description = $request['description'];
+        $event->reservation_type = $request['reservation_type'];
+        $event->image = $request['image'];
         $event->creator = $user;
 
         $event->save();
