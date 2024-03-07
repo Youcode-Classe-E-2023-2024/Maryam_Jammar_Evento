@@ -32,7 +32,8 @@ class RegisterController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
-            'picture' => 'required'
+            'picture' => 'required',
+            'role' => 'required'
         ]);
 
         $fileName = time() . $request->file('picture')->getClientOriginalName();
@@ -45,18 +46,19 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'picture' => $picturePath
+            'picture' => $picturePath,
+            'role' => $request->role,
         ]);
 
-//        Auth::login($user);
-//
-//        if (User::count() === 1) {
-//            // Si c'est le premier utilisateur, lui attribuer le rôle d'administrateur
-//            $user->assignRole('admin');
-//        } else {
-//            // Sinon, attribuer le rôle d'utilisateur normal
-//            $user->assignRole('user');
-//        }
+        Auth::login($user);
+
+        if (User::count() === 1) {
+            $user->assignRole('admin');
+        } elseif($request->role = 'organiser'){
+            $user->assignRole('organizer');
+        }else {
+            $user->assignRole('client');
+        }
 
         return redirect('/login');
 

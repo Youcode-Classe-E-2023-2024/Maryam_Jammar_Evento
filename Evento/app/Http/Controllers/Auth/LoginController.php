@@ -25,12 +25,12 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-//            $request->session()->regenerate();
-//
-//            $user = User::find(Auth::id());
-//            if($user->hasRole("admin")) return redirect()->intended('/dashboard');
-//            elseif ($user->hasRole("editor")) return redirect()->intended('/redacteur');
-//            else return redirect()->intended('/');
+            $request->session()->regenerate();
+
+            $user = User::find(Auth::id());
+            if($user->hasRole("admin")) return redirect()->intended('/dashboard');
+            elseif ($user->hasRole("organizer")) return redirect()->intended('/organiser');
+            else return redirect()->intended('/');
             return redirect('/');
         }
 
