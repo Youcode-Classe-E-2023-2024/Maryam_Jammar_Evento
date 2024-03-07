@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -47,8 +48,16 @@ class EventController extends Controller
             'time' => 'required',
             'description' => 'required',
             'reservation_type' => 'required',
-            'image' => 'required',
+            'image' => 'required|image',
         ]);
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('image', $fileName, 'public');
+            $picturePath = Storage::url($path);
+        } else {
+            $picturePath = null;
+        }
 
         Event::create([
             'title' => $request->title,
@@ -59,7 +68,7 @@ class EventController extends Controller
             'nbr_place' => $request->nbr_place,
             'description' => $request->description,
             'reservation_type' => $request->reservation_type,
-            'image' => $request->image,
+            'image' => $picturePath,
             'creator' => $user,
         ]);
 
@@ -95,9 +104,16 @@ class EventController extends Controller
             'time' => 'required',
             'description' => 'required',
             'reservation_type' => 'required',
-            'image' => 'required',
+            'image' => 'required|image',
         ]);
 
+        if ($request->hasFile('image')) {
+            $fileName = time() . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('image', $fileName, 'public');
+            $picturePath = Storage::url($path);
+        } else {
+            $picturePath = null;
+        }
 
         $event->title = $request['title'];
         $event->location = $request['location'];
@@ -107,7 +123,7 @@ class EventController extends Controller
         $event->nbr_place = $request['nbr_place'];
         $event->description = $request['description'];
         $event->reservation_type = $request['reservation_type'];
-        $event->image = $request['image'];
+        $event->image = $picturePath;
         $event->creator = $user;
 
         $event->save();
