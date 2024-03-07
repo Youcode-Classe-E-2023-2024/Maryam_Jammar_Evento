@@ -144,27 +144,29 @@
                                             {{$event->location}}
                                         </div>
                                     </div>
-                                    <div class="w-1/2 flex justify-end">
-                                        <svg id="menuIcon" class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer"
-                                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                             viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
-                                                  d="M12 6h0m0 6h0m0 6h0"/>
-                                        </svg>
-                                        <div id="menuOptions" class="hidden ml-2 flex flex-col font-bold">
-                                            {{--update event--}}
-                                            <a href="/updateEvent/{{$event->id}}" class="">Update</a>
-                                            {{--<button id="updateBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>--}}
-
-                                            {{--delete event--}}
-                                            <form action="/deleteEvent/{{$event->id}}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button>Delete</button>
-                                                {{-- <button id="deleteBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>--}}
-                                            </form>
+                                    <div class="w-full flex justify-end">
+                                        <div class="relative">
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer menuIcon"
+                                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
+                                                      d="M12 6h0m0 6h0m0 6h0"/>
+                                            </svg>
+                                            <div class="hidden absolute top-0 right-0 mt-6 mr-2 flex flex-col font-bold menuOptions">
+                                                <div class="flex">
+                                                    {{-- Update event --}}
+                                                    <a href="/updateEvent/{{$event->id}}" class="mr-2">Update</a>
+                                                </div>
+                                                {{-- Delete event --}}
+                                                <form action="/deleteEvent/{{$event->id}}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit">Delete</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
+
 
 
                                 </div>
@@ -177,23 +179,19 @@
     </div>
 </main>
 <script>
-    document.getElementById('menuIcon').addEventListener('click', function () {
-        // Récupérer l'élément du menu des options
-        var menuOptions = document.getElementById('menuOptions');
+    // Récupérer tous les éléments avec la classe menuIcon
+    const menuIcons = document.querySelectorAll('.menuIcon');
 
-        // Afficher ou masquer le menu des options
-        menuOptions.classList.toggle('hidden');
+    // Pour chaque icône du menu, ajouter un écouteur d'événement de clic
+    menuIcons.forEach((icon) => {
+        icon.addEventListener('click', () => {
+            // Trouver le menu des options correspondant à l'icône du menu
+            const menuOptions = icon.nextElementSibling;
+
+            // Afficher ou masquer le menu des options
+            menuOptions.classList.toggle('hidden');
+        });
     });
-
-    // Vous pouvez ajouter des gestionnaires d'événements pour les boutons Update et Delete ici
-    document.getElementById('updateBtn').addEventListener('click', function () {
-        // Ajoutez ici le code pour l'action Update
-    });
-
-    document.getElementById('deleteBtn').addEventListener('click', function () {
-        // Ajoutez ici le code pour l'action Delete
-    });
-
 </script>
 </body>
 
