@@ -17,13 +17,16 @@ class EventController extends Controller
     {
         $content = file_get_contents('https://raw.githubusercontent.com/alaouy/sql-moroccan-cities/master/json/ville.json');
         $data = json_decode($content);
-        return view('organiser.createEvent', compact('data'));
+
+        $categories = Category::all();
+        return view('organiser.createEvent', compact('data', 'categories'));
     }
 
 
     public function AllEvents()
     {
         $events = Event::all();
+
         return view('organiser.allEvents', compact('events'));
     }
 
@@ -49,6 +52,7 @@ class EventController extends Controller
             'description' => 'required',
             'reservation_type' => 'required',
             'image' => 'required|image',
+            'category' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -70,6 +74,7 @@ class EventController extends Controller
             'reservation_type' => $request->reservation_type,
             'image' => $picturePath,
             'creator' => $user,
+            'category' => $request->category,
         ]);
 
         return redirect('/allEvents');
@@ -83,9 +88,11 @@ class EventController extends Controller
         $content = file_get_contents('https://raw.githubusercontent.com/alaouy/sql-moroccan-cities/master/json/ville.json');
         $data = json_decode($content);
 
+        $categories = Category::all();
+
         $event = Event::find($id);
 
-        return view('organiser.updateEvent', compact('event', 'data'));
+        return view('organiser.updateEvent', compact('event', 'data', 'categories'));
     }
 
     /**
@@ -105,6 +112,7 @@ class EventController extends Controller
             'description' => 'required',
             'reservation_type' => 'required',
             'image' => 'required|image',
+            'category' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -125,6 +133,7 @@ class EventController extends Controller
         $event->reservation_type = $request['reservation_type'];
         $event->image = $picturePath;
         $event->creator = $user;
+        $event->category = $request['category'];
 
         $event->save();
         return redirect('/allEvents');
