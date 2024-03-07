@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
@@ -96,3 +98,18 @@ Route::get('/updateEvent/{id}', [EventController::class, 'editEvent']);
 
 Route::post('/updateEvent/{id}', [EventController::class, 'updateEvent']);
 
+Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('forgot-password')
+   ;
+//
+Route::post('/forgot-request', [ForgotPasswordLinkController::class, 'store']);
+//
+Route::post('/forgot-password', [ForgotPasswordController::class, 'reset'])->name('new_password');
+
+// Password Reset Routes
+Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showForm'])->name('password.reset')
+    ;
+
+Route::post('password/reset', 'App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');

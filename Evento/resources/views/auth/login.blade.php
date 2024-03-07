@@ -40,7 +40,7 @@
                                id="password" placeholder="Password">
                     </div>
                     <p class="text-right text-sm font-light text-gray-500 dark:text-gray-400">
-                        <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                        <a href="{{route('forgot-password')}}" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                     </p>
                     <div class="px-4 pb-2 pt-4">
                         <button
