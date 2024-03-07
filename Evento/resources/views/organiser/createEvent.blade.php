@@ -11,7 +11,7 @@
                 <div class="flex items-center justify-center p-12">
                     <!-- Author: FormBold Team -->
                     <div class="mx-auto w-full max-w-[550px] bg-white">
-                        <form action="/createEvent" method="post">
+                        <form action="/createEvent" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="-mx-3 flex flex-wrap">
                                 <div class="w-full px-3 sm:w-1/2">
