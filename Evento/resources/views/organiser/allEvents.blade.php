@@ -17,7 +17,7 @@
 
                         <div
                             class="text-white relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-gray-500"
-                            style="background-image: url(&quot;https://source.unsplash.com/random/240x320&quot;);">
+                            style="background-image: url({{$event->image}});">
                             <div
                                 class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via-transparent dark:from-gray-900 dark:to-gray-900"></div>
                             <div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-2 mt-3">
