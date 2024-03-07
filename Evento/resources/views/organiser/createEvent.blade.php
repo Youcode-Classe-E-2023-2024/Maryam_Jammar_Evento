@@ -74,14 +74,27 @@
                                 <div class="w-full px-3 sm:w-1/2">
                                     <div class="mb-5">
                                         <label for="nbr_place" class="mb-3 block text-base font-medium text-[#07074D]">
-                                            Total tickets
+                                            Total de places
                                         </label>
                                         <input type="number" name="nbr_place" id="time" placeholder="Nombre de places"
                                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
                                     </div>
                                 </div>
                             </div>
+                            <div class="mb-5">
+                                <label for="location" class="mb-3 block text-base font-medium text-[#07074D]">
+                                    Category
+                                </label>
+                                <select name="category"
+                                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <option value="" selected>Choose a category</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
 
+                                </select>
+
+                            </div>
                             <div class="mb-5">
                                 <label for="description" class="mb-3 block text-base font-medium text-[#07074D]">
                                     Description
