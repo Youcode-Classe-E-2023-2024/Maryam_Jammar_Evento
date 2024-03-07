@@ -30,16 +30,11 @@
                 <span
                     class="w-10 h-10 items-center justify-center inline-flex rounded-full font-bold text-lg border-2 border-white">in</span>
             </div>
-{{--            <p class="text-gray-100">--}}
-{{--                or use your email account--}}
-{{--            </p>--}}
+
             <form enctype="multipart/form-data" method="post" action="/register"
                   class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                 @csrf
                 <div class="pb-2 ">
-                    {{--                    <input type="file" name="picture" id="picture" class="block w-full p-4 text-lg rounded-sm bg-black">--}}
-
-                    <!-- component -->
                     <div class="extraOutline p-4 bg-black bg-whtie m-auto rounded-lg">
                         <div class="file_upload p-5 relative h-36 border-4 border-dotted border-gray-300 rounded-lg">
                             <svg class="text-indigo-500 w-8 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg"
