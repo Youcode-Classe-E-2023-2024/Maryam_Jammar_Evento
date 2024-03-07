@@ -7,7 +7,7 @@
         <div class="container mx-auto px-4 py-8 flex flex-col">
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
-                    <img class="rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b"
+                    <img class="rounded-lg shadow-lg" src="{{$event->image}}"
                          alt="Concert Image">
                 </div>
                 <div class="w-full pl-12 text-justify lg:w-6/12">
