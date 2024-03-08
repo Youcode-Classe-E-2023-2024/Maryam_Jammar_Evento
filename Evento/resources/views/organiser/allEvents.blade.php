@@ -46,6 +46,10 @@
                                         {{$event->location}}
                                     </div>
                                 </div>
+                                <div class="right-0 flex space-x-4">
+                                    <p>Status: </p>
+                                    <p class="underline"> {{$event->status}}</p>
+                                </div>
                         </div>
                     @endforeach
                 </div>
