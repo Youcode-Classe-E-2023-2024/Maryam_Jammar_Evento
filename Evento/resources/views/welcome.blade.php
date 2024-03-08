@@ -29,8 +29,8 @@
                 </div>
                 <div class="md:flex space-x-6 hidden">
                     <span class="text-gray-500 text-md">+ Add your sauna</span>
-                    <span class="text-gray-500 text-md">Sign up</span>
-                    <span class="text-gray-500 text-md">Log in</span>
+                    <a href="/register" class="text-gray-500 text-md">Sign up</a>
+                    <a href="/login" class="text-gray-500 text-md">Log in</a>
                 </div>
             </div>
         </div>
