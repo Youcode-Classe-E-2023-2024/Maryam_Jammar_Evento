@@ -34,6 +34,13 @@ class EventController extends Controller
         return view('organiser.allEvents', compact('events'));
     }
 
+    public function ApproveEvent()
+    {
+        $events = Event::where('status', 'En attente')->get();
+
+        return view('admin.events', compact('events'));
+    }
+
     public function ShowEventDescription($id)
     {
         $event = Event::find($id);
