@@ -34,7 +34,7 @@ class EventController extends Controller
         return view('organiser.allEvents', compact('events'));
     }
 
-    public function ApproveEvent()
+    public function CheckEvent()
     {
         $events = Event::where('status', 'En attente')->get();
 
@@ -178,5 +178,23 @@ class EventController extends Controller
         $event->delete();
 
         return redirect('/allEvents');
+    }
+
+    public function approveEvent($id)
+    {
+        $event = Event::findOrFail($id);
+        $event->status = 'Public';
+        $event->save();
+
+        return redirect()->back();
+    }
+
+    public function declineEvent($id)
+    {
+        $event = Event::findOrFail($id);
+        $event->status = 'Decline';
+        $event->save();
+
+        return redirect()->back();
     }
 }

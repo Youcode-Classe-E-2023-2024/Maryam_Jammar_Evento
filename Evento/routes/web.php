@@ -54,7 +54,7 @@ Route::get('/allusers', function () {
 //Route::get('/events', function () {
 //    return view('admin.events');
 //});
-Route::get('/events', [EventController::class, 'ApproveEvent']);
+Route::get('/events', [EventController::class, 'CheckEvent']);
 
 
 Route::get('/approveEvents', function () {
@@ -118,3 +118,7 @@ Route::post('password/reset', 'App\Http\Controllers\Auth\ResetPasswordController
 
 //home page
 Route::get('/', [UserController::class, 'home']);
+
+//aprove or decline
+Route::post('/approve-event/{id}', [EventController::class, 'approveEvent']);
+Route::post('/decline-event/{id}', [EventController::class, 'declineEvent']);

@@ -27,18 +27,24 @@
                                         <p class="text-sm text-gray-600 leading-none mt-1">{{$event->price}} DH _ </p>
                                         <p class="text-sm text-gray-600 leading-none mt-1">{{$event->location}}</p>
                                     </div>
-{{--                                    <p class="text-sm text-gray-600 leading-none mt-1">--}}
-{{--                                        Organizer: {{ $event->creator->name }}</p>--}}
+                                    {{--                                    <p class="text-sm text-gray-600 leading-none mt-1">--}}
+                                    {{--                                        Organizer: {{ $event->creator->name }}</p>--}}
                                 </div>
                             </div>
-                            <button
-                                class="flex-no-shrink bg-green-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-500 text-white rounded-full">
-                                Publish
-                            </button>
-                            <button
-                                class="flex-no-shrink bg-red-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full">
-                                Decline
-                            </button>
+                            <form action="/approve-event/{{$event->id}}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="flex-no-shrink bg-green-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-500 text-white rounded-full">
+                                    Publish
+                                </button>
+                            </form>
+                            <form action="/decline-event/{{$event->id}}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="flex-no-shrink bg-red-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full">
+                                    Decline
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
