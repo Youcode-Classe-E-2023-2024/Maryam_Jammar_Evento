@@ -16,8 +16,8 @@ class UserController extends Controller
     public function home()
     {
         $categories = Category::all();
-        $LatestEvents = Event::limit(5)->get();
-        $events = Event::all();
+        $LatestEvents = Event::limit(5)->where('status', 'Public')->get();
+        $events = Event::where('status', 'Public')->get();
 
         return view('welcome', compact('categories', 'LatestEvents', 'events'));
     }
