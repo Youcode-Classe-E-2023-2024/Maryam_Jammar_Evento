@@ -57,8 +57,6 @@ class EventController extends Controller
             'reservation_type' => 'required',
             'image' => 'required|image',
             'category' => 'required',
-//            'status' => 'required',
-
         ]);
 
         if ($request->hasFile('image')) {

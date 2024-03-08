@@ -13,6 +13,7 @@
                     <div class="mx-auto w-full max-w-[550px] bg-white">
                         <form action="/createEvent" method="post" enctype="multipart/form-data">
                             @csrf
+{{--                            <input type="hidden" name="status">--}}
                             <div class="-mx-3 flex flex-wrap">
                                 <div class="w-full px-3 sm:w-1/2">
                                     <div class="mb-5">
@@ -20,7 +21,7 @@
                                             Title
                                         </label>
                                         <input type="text" name="title" placeholder="Event title"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required/>
                                     </div>
                                 </div>
                                 <div class="w-full px-3 sm:w-1/2">
@@ -29,7 +30,7 @@
                                             Location
                                         </label>
                                         <select name="location"
-                                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required>
                                             <option value="" selected>Choose a location</option>
                                             @foreach($data as $item)
                                                 <option value="{{ $item->ville }}">{{ $item->ville }}</option>
@@ -47,7 +48,7 @@
                                             Date
                                         </label>
                                         <input type="date" name="date" id="date"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required/>
                                     </div>
                                 </div>
                                 <div class="w-full px-3 sm:w-1/2">
@@ -56,7 +57,7 @@
                                             Time
                                         </label>
                                         <input type="time" name="time" id="time"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required/>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +69,7 @@
                                             Price
                                         </label>
                                         <input type="number" name="price" id="date" placeholder="245.00"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required/>
                                     </div>
                                 </div>
                                 <div class="w-full px-3 sm:w-1/2">
@@ -77,7 +78,7 @@
                                             Total de places
                                         </label>
                                         <input type="number" name="nbr_place" id="time" placeholder="Nombre de places"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required/>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +87,7 @@
                                     Category
                                 </label>
                                 <select name="category"
-                                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required>
                                     <option value="" selected>Choose a category</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -100,7 +101,7 @@
                                     Description
                                 </label>
                                 <textarea type="text" name="description" placeholder="Event description"
-                                          class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                          class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" required/>
                                 </textarea>
                             </div>
 

@@ -28,6 +28,8 @@ return new class extends Migration
             $table->foreign('creator')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category')->references('id')->on('categories')->onDelete('cascade');
 
+            $table->enum('status', ['En attente', 'Public', 'Decline'])->default('En attente');
+
             $table->timestamps();
         });
     }
