@@ -57,6 +57,8 @@ class EventController extends Controller
             'reservation_type' => 'required',
             'image' => 'required|image',
             'category' => 'required',
+//            'status' => 'required',
+
         ]);
 
         if ($request->hasFile('image')) {
@@ -81,7 +83,7 @@ class EventController extends Controller
             'category' => $request->category,
         ]);
 
-        $this->sendEmailToAdmin();
+        $this->sendEmailToAdmin($user);
 
         return redirect('/allEvents');
     }
@@ -89,13 +91,15 @@ class EventController extends Controller
 
     private function sendEmailToAdmin()
     {
+        $user = Auth::user()->name;
+
         $adminRole = Role::where('name', 'admin')->first();
 
         if ($adminRole) {
             $admins = $adminRole->users;
 
             foreach ($admins as $admin) {
-                Mail::to($admin->email)->send(new NewEventNotification());
+                Mail::to($admin->email)->send(new NewEventNotification($user));
             }
         }
     }

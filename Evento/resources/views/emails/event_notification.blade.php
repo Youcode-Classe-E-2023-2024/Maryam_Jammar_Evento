@@ -48,7 +48,7 @@
     </div>
 
     <p>Je vous remercie de bien vouloir examiner cette demande et de publier l'événement sur notre plateforme.</p>
-    <p>Cordialement,<br>[Votre Nom]</p>
+    <p>Cordialement,<br>Organizer name</p>
 </div>
 </body>
 </html>

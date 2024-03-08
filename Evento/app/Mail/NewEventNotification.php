@@ -9,6 +9,13 @@ class NewEventNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $user;
+
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Build the message.
      *
