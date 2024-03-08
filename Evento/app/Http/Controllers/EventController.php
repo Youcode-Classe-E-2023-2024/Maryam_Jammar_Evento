@@ -47,6 +47,12 @@ class EventController extends Controller
         return view('organiser.description', compact('event'));
     }
 
+    public function EventContent($id)
+    {
+        $event = Event::find($id);
+        return view('content', compact('event'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */

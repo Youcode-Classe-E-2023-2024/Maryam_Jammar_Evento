@@ -122,3 +122,5 @@ Route::get('/', [UserController::class, 'home']);
 //aprove or decline
 Route::post('/approve-event/{id}', [EventController::class, 'approveEvent']);
 Route::post('/decline-event/{id}', [EventController::class, 'declineEvent']);
+
+Route::get('/description/{id}', [EventController::class, 'EventContent']);
