@@ -51,9 +51,11 @@ Route::get('/allusers', function () {
     return view('admin.allusers');
 });
 
-Route::get('/events', function () {
-    return view('admin.events');
-});
+//Route::get('/events', function () {
+//    return view('admin.events');
+//});
+Route::get('/events', [EventController::class, 'ApproveEvent']);
+
 
 Route::get('/approveEvents', function () {
     return view('admin.approveEvents');
@@ -113,3 +115,6 @@ Route::get('password/reset/{token}', [ForgotPasswordController::class, 'showForm
     ;
 
 Route::post('password/reset', 'App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
+
+//home page
+Route::get('/', [UserController::class, 'home']);
