@@ -31,10 +31,19 @@ class ReservationController extends Controller
 
         $event = Event::find($id);
 
-        Mail::to($user->email)->send(new Reservation($event));
+        if ($event && $event->nbr_place > 0) {
+            $event->nbr_place -= 1;
 
-        return back()->with('success', 'Email sent successfully.');
+            $event->save();
+
+            Mail::to($user->email)->send(new Reservation($event));
+
+            return back()->with('success', 'Your reservation has been confirmed. An email has been sent to you.');
+        } else {
+            return back()->with('error', 'No places available for reservation.');
+        }
     }
+
 
     /**
      * Display the specified resource.
