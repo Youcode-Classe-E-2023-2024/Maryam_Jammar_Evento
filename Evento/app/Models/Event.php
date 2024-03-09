@@ -21,4 +21,10 @@ class Event extends Model
         'creator',
         'category'
     ];
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator');
+    }
+
+
 }

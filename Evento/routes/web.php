@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -124,3 +125,9 @@ Route::post('/approve-event/{id}', [EventController::class, 'approveEvent']);
 Route::post('/decline-event/{id}', [EventController::class, 'declineEvent']);
 
 Route::get('/description/{id}', [EventController::class, 'EventContent']);
+
+Route::post('/paiement/{id}', [ReservationController::class, 'paiement']);
+Route::get('/paiement/{id}', [ReservationController::class, 'paiement']);
+
+
+Route::post('/buy/{id}', [ReservationController::class, 'buy']);
