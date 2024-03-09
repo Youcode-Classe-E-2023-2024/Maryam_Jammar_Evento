@@ -19,7 +19,12 @@ class ReservationController extends Controller
     public function paiement($id)
     {
         $event = Event::find($id);
-        return view('paiement', compact('event'));
+
+        if ($event->reservation_type == 'manuel') {
+            return back()->with('info', 'Votre demande de réservation est en attente d\'approbation par l\'organisateur.');
+        } else {
+            return view('paiement', compact('event'));
+        }
     }
 
 
