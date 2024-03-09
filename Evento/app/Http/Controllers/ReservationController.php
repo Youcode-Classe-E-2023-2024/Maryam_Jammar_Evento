@@ -8,6 +8,7 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Spatie\Permission\Models\Role;
 
 class ReservationController extends Controller
@@ -38,7 +39,10 @@ class ReservationController extends Controller
 
             Mail::to($user->email)->send(new Reservation($event));
 
-            return back()->with('success', 'Your reservation has been confirmed. An email has been sent to you.');
+            Session::flash('success', 'Your reservation has been confirmed. An email has been sent to you.');
+
+
+            return back();
         } else {
             return back()->with('error', 'No places available for reservation.');
         }

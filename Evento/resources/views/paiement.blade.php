@@ -157,3 +157,18 @@
         </form>
     </div>
 </div>
+@if(Session::has('success'))
+    <div id="alert-message" class="hidden bg-green-500 text-white px-4 py-3 absolute mx-auto end-0 rounded shadow-lg">
+        {{ Session::get('success') }}
+    </div>
+@endif
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const alertMessage = document.getElementById('alert-message');
+        alertMessage.classList.remove('hidden');
+
+        setTimeout(function() {
+            alertMessage.classList.add('hidden');
+        }, 4000);
+    });
+</script>
