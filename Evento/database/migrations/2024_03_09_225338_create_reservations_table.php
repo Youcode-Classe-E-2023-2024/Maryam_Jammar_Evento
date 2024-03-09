@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client');
+            $table->foreign('client')->references('id')->on('users')->onDelete('cascade');
+
             $table->unsignedBigInteger('event');
-            $table->enum('status', ['Reservee', 'En attente']);
+            $table->foreign('event')->references('id')->on('events')->onDelete('cascade');
+
+            $table->enum('status', ['Reservée', 'En attente', 'Refusée']);
             $table->timestamps();
         });
     }
