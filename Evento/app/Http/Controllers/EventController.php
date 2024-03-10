@@ -211,11 +211,6 @@ class EventController extends Controller
 
         $searchTerm = $request->input('search');
 
-//        $events = Event::where('status', 'Public')
-//            ->where('title', 'like', '%' . $searchTerm . '%')
-//            ->orWhere('location', 'like', '%' . $searchTerm . '%')
-//            ->paginate(6);
-
         $events = Event::where('status', 'Public')
             ->where(function ($query) use ($searchTerm) {
                 $query->where('title', 'like', '%' . $searchTerm . '%')
@@ -225,5 +220,22 @@ class EventController extends Controller
 
         return view('welcome', compact('events', 'categories', 'LatestEvents'));
     }
+
+
+    public function filterByCategory($categoryName)
+    {
+        $categories = Category::all();
+        $LatestEvents = Event::limit(5)->where('status', 'Public')->get();
+
+        $category = Category::where('name', $categoryName)->firstOrFail();
+
+        $events = Event::where('category', $category->id)
+            ->where('status', 'Public')->paginate(6);
+
+        //dd($events);
+        return view('welcome', compact('events', 'categories', 'LatestEvents'));
+    }
+
+
 }
 

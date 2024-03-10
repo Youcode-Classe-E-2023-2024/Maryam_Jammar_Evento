@@ -12,4 +12,14 @@ class Category extends Model
     protected $fillable = [
         'name'
     ];
+
+//    public function events()
+//    {
+//        return $this->belongsToMany(Event::class);
+//    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

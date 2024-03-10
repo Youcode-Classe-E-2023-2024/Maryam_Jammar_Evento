@@ -89,6 +89,9 @@ Route::get('/allusers', [UserController::class, 'show']);
 //search
 Route::post('/search', [EventController::class, 'search']);
 
+//filter
+Route::get('/filter/{category}', [EventController::class, 'filterByCategory']);
+
 //events
 Route::get('/createEvent', [EventController::class, 'showForm']);
 

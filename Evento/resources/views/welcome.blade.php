@@ -15,20 +15,14 @@
     @include('side')
     <!-- component -->
     <div class="flex justify-between mx-auto p-2.5 flex rounded-full bg-[#0d1829] px-2 w-full max-w-[600px]">
-        {{--        <button class="self-center flex p-1 cursor-pointer bg-[#0d1829]">--}}
-        {{--            <svg class="w-6 h-6 text-gray-200 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                 fill="none" viewBox="0 0 24 24">--}}
-        {{--                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"--}}
-        {{--                      d="M18.8 4H5.2a1 1 0 0 0-.7 1.7l5.3 6 .2.7v4.8c0 .2 0 .4.2.4l3 2.3c.3.2.8 0 .8-.4v-7.1c0-.3 0-.5.2-.7l5.3-6a1 1 0 0 0-.7-1.7Z"/>--}}
-        {{--            </svg>--}}
-
-        {{--        </button>--}}
         <div class="flex justify-between mx-auto text-gray-400 space-x-4">
             @foreach($categories as $category)
-                <button>{{$category->name}}</button>
+{{--                <button>{{$category->name}}</button>--}}
+{{--                <a href="{{ route('events.filter', ['category' => $category->id]) }}" class="text-white hover:text-gray-200">{{$category->name}}</a>--}}
+                <a href="/filter/{{$category->name}}" class="text-white hover:text-gray-200 hover:text-gray-200">{{$category->name}}</a>
+
             @endforeach
         </div>
-
     </div>
 
     <!-- Section Hero -->
