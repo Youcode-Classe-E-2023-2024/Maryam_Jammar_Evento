@@ -16,4 +16,14 @@ class Reserver extends Model
         'event',
         'status'
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client');
+    }
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event');
+    }
+
 }

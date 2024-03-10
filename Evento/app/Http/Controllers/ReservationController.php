@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ConfirmReservation;
+use App\Mail\ContinueReservation;
 use App\Mail\NewEventNotification;
 use App\Mail\Reservation;
 use App\Mail\TicketReservation;
@@ -84,12 +85,15 @@ class ReservationController extends Controller
 
     public function approveReservation($id)
     {
-        $event = Reserver::findOrFail($id);
-        $event->status = 'Reservée';
-        $event->save();
+        $reservation = Reserver::findOrFail($id);
+        $user = $reservation->client()->first();
+        $event = $reservation->event()->first();
+
+        Mail::to($user->email)->send(new ContinueReservation($reservation, $user, $event));
 
         return redirect()->back();
     }
+
 
     public function declineReservation($id)
     {
