@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmReservation;
 use App\Mail\NewEventNotification;
 use App\Mail\Reservation;
 use App\Models\Event;
+use App\Models\Reserver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -18,12 +20,24 @@ class ReservationController extends Controller
      */
     public function paiement($id)
     {
+        $user = Auth::user();
         $event = Event::find($id);
 
-        if ($event->reservation_type == 'manuel') {
-            return back()->with('info', 'Votre demande de réservation est en attente d\'approbation par l\'organisateur.');
+        if ($event) {
+            if ($event->reservation_type == 'manuel') {
+                $reservation = new Reserver();
+                $reservation->client = $user->id;
+                $reservation->event = $event->id;
+                $reservation->status = 'En attente';
+                $reservation->save();
+            }
+
+            Mail::to($user->email)->send(new ConfirmReservation($event, $user));
+            Session::flash('success', 'Your reservation request has been submitted. You will receive a confirmation once it is approved.');
+
+            return back()->with('success', 'Your reservation request has been submitted. You will receive a confirmation once it is approved.');
         } else {
-            return view('paiement', compact('event'));
+            return back()->with('error', 'Event not found.');
         }
     }
 
@@ -42,7 +56,7 @@ class ReservationController extends Controller
 
             $event->save();
 
-            Mail::to($user->email)->send(new Reservation($event));
+            Mail::to($user->email)->send(new Reserver($event));
 
             Session::flash('success', 'Your reservation has been confirmed. An email has been sent to you.');
 
@@ -53,14 +67,23 @@ class ReservationController extends Controller
         }
     }
 
+//    public function approveReservation($id)
+//    {
+//        $event = Event::findOrFail($id);
+//        $event->status = 'Public';
+//        $event->save();
+//
+//        return redirect()->back();
+//    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+//    public function declineReservation($id)
+//    {
+//        $event = Event::findOrFail($id);
+//        $event->status = 'Decline';
+//        $event->save();
+//
+//        return redirect()->back();
+//    }
 
     /**
      * Update the specified resource in storage.
