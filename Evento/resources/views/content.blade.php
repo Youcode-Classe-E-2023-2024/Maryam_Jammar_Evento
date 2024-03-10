@@ -156,6 +156,19 @@
     </div>
 @endif
 
+@if(Session::has('success'))
+    <div id="alert-message" class="w-1/2 left-1/2 bg-blue-100 border bottom-2/4 border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Info:</strong>
+        <span class="block sm:inline">{{ Session::get('success') }}</span>
+        <span id="close-alert" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
+            <svg class="fill-current h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <title>Close</title>
+                <path fill-rule="evenodd" d="M14.354 5.354a2 2 0 00-2.828 0L10 7.172 7.172 5.354a2 2 0 00-2.828 2.828L7.172 10 5.354 12.828a2 2 0 102.828 2.828L10 12.828l2.828 2.828a2 2 0 102.828-2.828L12.828 10l2.828-2.828a2 2 0 000-2.828z" clip-rule="evenodd" />
+            </svg>
+        </span>
+    </div>
+@endif
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const closeAlertBtn = document.getElementById('close-alert');
