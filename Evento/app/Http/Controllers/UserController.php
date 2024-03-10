@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
@@ -17,7 +18,7 @@ class UserController extends Controller
     {
         $categories = Category::all();
         $LatestEvents = Event::limit(5)->where('status', 'Public')->get();
-        $events = Event::where('status', 'Public')->get();
+        $events = Event::where('status', 'Public')->paginate(6);
 
         return view('welcome', compact('categories', 'LatestEvents', 'events'));
     }

@@ -131,41 +131,47 @@
     <section>
         <h1 class="text-3xl font-bold text-gray-600 mb-10">Explore exotic locations in Finland</h1>
         <div class="grid sm:grid-cols-3 gap-4 grid-cols-2">
-            @foreach($events as $event)
+{{--            <div class="flex flex-col">--}}
+                @foreach($events as $event)
 
-                <div
-                    class="text-white relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-gray-500"
-                    style="background-image: url({{$event->image}});">
                     <div
-                        class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via-transparent dark:from-gray-900 dark:to-gray-900"></div>
-                    <div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-2 mt-3">
-                        <a rel="noopener noreferrer" href="#"
-                           class="px-3 py-2 text-lg font-semibold tracki uppercase dark:text-gray-100 bgundefined">{{$event->title}}</a>
-                        <div class="flex flex-col justify-start text-center dark:text-gray-100">
+                        class="text-white relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-gray-500"
+                        style="background-image: url({{$event->image}});">
+                        <div
+                            class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via-transparent dark:from-gray-900 dark:to-gray-900"></div>
+                        <div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-2 mt-3">
+                            <a rel="noopener noreferrer" href="#"
+                               class="px-3 py-2 text-lg font-semibold tracki uppercase dark:text-gray-100 bgundefined">{{$event->title}}</a>
+                            <div class="flex flex-col justify-start text-center dark:text-gray-100">
                                     <span
                                         class="text-3xl font-semibold leadi tracki">{{ \Carbon\Carbon::parse($event->date)->format('j') }}</span>
-                            <span
-                                class="leadi uppercase">{{ \Carbon\Carbon::parse($event->date)->format('F') }}</span>
-                        </div>
-                    </div>
-                    <h2 class="z-10 p-5">
-                        <a rel="noopener noreferrer" href="/description/{{$event->id}}"
-                           class="font-medium text-md hover:underline dark:text-gray-100">{{ Str::limit($event->description, 50) }}</a>
-
-                        <div class="w-full font-bold flex mt-4">
-                            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                      d="M12 2a8 8 0 0 1 6.6 12.6l-.1.1-.6.7-5.1 6.2a1 1 0 0 1-1.6 0L6 15.3l-.3-.4-.2-.2v-.2A8 8 0 0 1 11.8 2Zm3 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                      clip-rule="evenodd"/>
-                            </svg>
-
-                            <div class="">
-                                {{$event->location}}
+                                <span
+                                    class="leadi uppercase">{{ \Carbon\Carbon::parse($event->date)->format('F') }}</span>
                             </div>
                         </div>
+                        <h2 class="z-10 p-5">
+                            <a rel="noopener noreferrer" href="/description/{{$event->id}}"
+                               class="font-medium text-md hover:underline dark:text-gray-100">{{ Str::limit($event->description, 50) }}</a>
+
+                            <div class="w-full font-bold flex mt-4">
+                                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                          d="M12 2a8 8 0 0 1 6.6 12.6l-.1.1-.6.7-5.1 6.2a1 1 0 0 1-1.6 0L6 15.3l-.3-.4-.2-.2v-.2A8 8 0 0 1 11.8 2Zm3 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+
+                                <div class="">
+                                    {{$event->location}}
+                                </div>
+                            </div>
+                    </div>
+                @endforeach
+                <div class="pt-4">
+                    {{$events->links()}}
                 </div>
-            @endforeach
+
+{{--            </div>--}}
         </div>
         <hr class="w-40 my-14 border-4 rounded-md sm:mx-0 mx-auto"/>
     </section>
