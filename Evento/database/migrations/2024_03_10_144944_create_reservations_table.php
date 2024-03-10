@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('event');
             $table->foreign('event')->references('id')->on('events')->onDelete('cascade');
 
-            $table->enum('status', ['Reservée', 'En attente', 'Refusée']);
+            $table->enum('status', ['Reservée', 'En attente', 'Refusée', 'Acceptée']);
             $table->timestamps();
         });
     }
