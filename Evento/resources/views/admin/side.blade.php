@@ -153,17 +153,21 @@
                             </li>
                         </ul>
                         <div class="space-y-2 pt-2">
-                            <a href="#"
-                               class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2">
-                                <svg
-                                    class="w-5 h-5 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                    aria-hidden="true" focusable="false" data-prefix="fas" data-icon="gem" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path fill="currentColor"
-                                          d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6 224H1.365L244.3 474.9z"></path>
-                                </svg>
-                                <span class="ml-4">Logout</span>
-                            </a>
+                            <form action="/logout" method="POST" class="flex">
+
+                                @csrf
+                                <button type="submit"
+                                        class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"
+                                              d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+                                    </svg>
+                                    <span class="ml-4">Logout</span>
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
