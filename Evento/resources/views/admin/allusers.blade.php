@@ -76,9 +76,10 @@
                                                     <span aria-hidden
                                                           class="absolute inset-0 bg-green-200 opacity-50 rounded-full">
                                                     </span>
-{{--                                                                @foreach($user->roles as $role)--}}
-                                                    {{--                                                                    <span class="relative">{{ $role->name }}</span>--}}
-                                                    {{--                                                                @endforeach--}}
+
+                                                    @foreach ($user->roles as $role)
+                                                        {{ $role->name }}
+                                                    @endforeach
                                                 </span>
                                         </td>
                                         <td class="flex justify-around items-center px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -137,10 +138,10 @@
                                                             <select id="category" name="role"
                                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 <option selected="">Select role</option>
-                                                                {{--                                                                @foreach($roles as $role)--}}
-                                                                {{--                                                                    <option--}}
-                                                                {{--                                                                        value="{{ $role->id }}">{{ $role->name }}</option>--}}
-                                                                {{--                                                                @endforeach--}}
+                                                                @foreach($roles as $role)
+                                                                    <option
+                                                                        value="{{ $role->id }}">{{ $role->name }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
 

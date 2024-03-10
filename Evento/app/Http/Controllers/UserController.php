@@ -62,23 +62,35 @@ class UserController extends Controller
     public function show()
     {
         $users = User::paginate(4);
-//        $roles = Role::all();
-        return view('admin.allusers', compact('users'));
+        $roles = Role::all();
+        return view('admin.allusers', compact('users', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'role' => 'required'
+        ]);
+        $role = Role::find($request->role);
+        $user = User::find($id);
+
+        $user->syncRoles($role->name);
+
+        return redirect('/allusers')->with('success', 'Role Updated successfully');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteUser($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully!');
+
     }
 }

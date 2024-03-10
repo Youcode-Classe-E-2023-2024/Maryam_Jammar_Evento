@@ -84,6 +84,8 @@ Route::delete('/deleteCategory/{id}', [CategoryController::class, 'destroyCatego
 
 //users amdin
 Route::get('/allusers', [UserController::class, 'show']);
+Route::post('/allusers/{id}', [UserController::class, 'update']);
+Route::delete('/delete/{id}', [UserController::class, 'deleteUser']);
 
 //organiser
 //Route::get('/createEvent', function () {
