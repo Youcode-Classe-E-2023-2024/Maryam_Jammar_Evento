@@ -38,6 +38,13 @@ class ReservationController extends Controller
 
         } else {
             $event = Event::find($id);
+
+            $reservation = new Reserver();
+            $reservation->client = $user->id;
+            $reservation->event = $event->id;
+            $reservation->status = 'Reservée';
+            $reservation->save();
+
             return view('paiement', compact('event'));
         }
     }
@@ -77,8 +84,8 @@ class ReservationController extends Controller
 
     public function approveReservation($id)
     {
-        $event = Event::findOrFail($id);
-        $event->status = 'Public';
+        $event = Reserver::findOrFail($id);
+        $event->status = 'Reservée';
         $event->save();
 
         return redirect()->back();
@@ -86,8 +93,8 @@ class ReservationController extends Controller
 
     public function declineReservation($id)
     {
-        $event = Event::findOrFail($id);
-        $event->status = 'Decline';
+        $event = Reserver::findOrFail($id);
+        $event->status = 'Refusée';
         $event->save();
 
         return redirect()->back();
