@@ -128,6 +128,7 @@ Route::get('/description/{id}', [EventController::class, 'EventContent']);
 
 Route::post('/paiement/{id}', [ReservationController::class, 'paiement']);
 Route::get('/paiement/{id}', [ReservationController::class, 'paiement']);
+Route::get('/paiement/{id}', [ReservationController::class, 'paiementLink']);
 
 
 Route::post('/buy/{id}', [ReservationController::class, 'buy']);

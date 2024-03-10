@@ -24,6 +24,7 @@ class ReservationController extends Controller
     {
         $user = Auth::user();
         $event = Event::find($id);
+        $reservation = Reserver::find($id);
 
         if ($event->reservation_type == 'manuel') {
             $reservation = new Reserver();
@@ -37,7 +38,7 @@ class ReservationController extends Controller
 
             return back()->with('success', 'Your reservation request has been submitted. You will receive a confirmation once it is approved.');
 
-        } else {
+        } elseif ($event->reservation_type == 'automatic') {
             $event = Event::find($id);
 
             $reservation = new Reserver();
@@ -51,6 +52,15 @@ class ReservationController extends Controller
     }
 
 
+    public function paiementLink($id){
+        $reservation = Reserver::find($id);
+        $event = $reservation->event()->first();
+
+        if ($reservation->status == 'Acceptée'){
+            return view('paiement', compact('reservation', 'event'));
+        }
+
+    }
     /***
      * Envoyer un email apres la reservation
      */
@@ -88,6 +98,9 @@ class ReservationController extends Controller
         $reservation = Reserver::findOrFail($id);
         $user = $reservation->client()->first();
         $event = $reservation->event()->first();
+
+        $reservation->status = 'Acceptée';
+        $reservation->save();
 
         Mail::to($user->email)->send(new ContinueReservation($reservation, $user, $event));
 
