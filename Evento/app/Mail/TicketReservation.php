@@ -15,21 +15,26 @@ class TicketReservation extends Mailable
 
     private $event;
     private $user;
-
+    private $pdfPath;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($event, $user)
+    public function __construct($event, $user, $pdfPath)
     {
         $this->event = $event;
         $this->user = $user;
+        $this->pdfPath = $pdfPath;
     }
 
     public function build()
     {
         return $this->view('emails.ticket')
             ->subject('Votre réservation a été confirmée avec succès!')
-            ->with('event', $this->event, 'user',  $this->user);
+            ->with('event', $this->event, 'user', $this->user)
+            ->attach($this->pdfPath, [
+                'as' => 'ticket_' . $this->event->id . '.pdf',
+                'mime' => 'application/pdf',
+            ]);
     }
 }

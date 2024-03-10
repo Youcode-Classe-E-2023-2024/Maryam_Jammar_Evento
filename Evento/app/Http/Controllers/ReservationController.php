@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade;
+//use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
+//use PDF;
 use App\Mail\ConfirmReservation;
 use App\Mail\ContinueReservation;
 use App\Mail\NewEventNotification;
@@ -73,15 +77,26 @@ class ReservationController extends Controller
             $event->nbr_place -= 1;
             $event->save();
 
-            Mail::to($user->email)->send(new TicketReservation($event, $user));
+            // Générer le PDF
+            $pdf = PDF::loadView('pdf.ticket', compact('event', 'user'));
+            $pdfPath = storage_path('app/public/pdfs/ticket_'.$event->id.'.pdf');
+
+            // Enregistrer le PDF localement
+            $pdf->save($pdfPath);
+
+            // Envoyer le PDF par e-mail
+            Mail::to($user->email)->send(new TicketReservation($event, $user, $pdfPath));
 
             Session::flash('success', 'Your reservation has been confirmed. An email has been sent to you.');
 
             return redirect('/');
+//            return $pdf->download('ticket.pdf');
+
         } else {
             return back()->with('error', 'No places available for reservation.');
         }
     }
+
     public function CheckReservation()
     {
         $events = Reserver::where('status', 'En attente')->get();
