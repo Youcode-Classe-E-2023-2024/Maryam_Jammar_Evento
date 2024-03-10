@@ -38,12 +38,12 @@
     <div class="flex flex-col justify-between h-full">
         <div class="flex-grow">
             <div class="px-4 py-6 text-center border-b">
-                <h1 class="text-xl font-bold leading-none"><span class="text-yellow-700">Task Manager</span> App</h1>
+                <h1 class="text-xl font-bold leading-none"><span class="text-yellow-700">Even</span>To</h1>
             </div>
             <div class="p-4">
                 <ul class="space-y-1">
                     <li>
-                        <a href="/organiser"
+                        <a href="/organizer"
                            class="flex items-center bg-yellow-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                  class="text-lg mr-4" viewBox="0 0 16 16">
@@ -76,14 +76,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)"
+                        <a href="/allEvents"
                            class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="text-lg mr-4" viewBox="0 0 16 16">
                                 <path
                                     d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                             </svg>
-                            Tags
+                            Demandes de reservation
                         </a>
                     </li>
                 </ul>
