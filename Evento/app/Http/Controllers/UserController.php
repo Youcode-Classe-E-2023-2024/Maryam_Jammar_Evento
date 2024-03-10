@@ -41,12 +41,27 @@ class UserController extends Controller
         return view('organiser.dashboard', compact('totalEvents', 'publicEvents', 'LatestEvents'));
     }
 
+    public function dashboard()
+    {
+        $admin = Auth::user();
+        $totalUsers = User::all()->count();
+        $totalCategories = Category::all()->count();
+
+        $publicEvents = Event::all()
+            ->where('status', 'Public')->count();
+        $LatestEvents = Event::limit(5)->get();
+        $LatestUsers = User::limit(5)->get();
+        $organizerRole = Role::where('name', 'organizer')->first();
+        $LatestOrganizer = $organizerRole->users()->orderBy('created_at', 'desc')->limit(5)->get();
+
+        return view('admin.dashboard', compact('admin', 'publicEvents', 'LatestEvents', 'totalUsers', 'totalCategories', 'LatestUsers', 'LatestOrganizer'));
+    }
     /**
      * Display the specified resource.
      */
     public function show()
     {
-        $users = User::paginate(8);
+        $users = User::paginate(4);
 //        $roles = Role::all();
         return view('admin.allusers', compact('users'));
     }

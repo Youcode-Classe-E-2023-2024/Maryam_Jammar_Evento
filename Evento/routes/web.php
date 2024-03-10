@@ -44,9 +44,9 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'destroy'])->name('logout')->middleware('auth');
 
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+//Route::get('/dashboard', function () {
+//    return view('admin.dashboard');
+//});
 
 Route::get('/allusers', function () {
     return view('admin.allusers');
@@ -63,6 +63,8 @@ Route::get('/approveEvents', function () {
 });
 
 Route::get('/organizer', [UserController::class, 'statistic']);
+
+Route::get('/dashboard', [UserController::class, 'dashboard']);
 
 Route::post('/organizer', function () {
     return view('organiser.dashboard');
