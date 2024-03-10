@@ -25,5 +25,4 @@ class Reserver extends Model
     {
         return $this->belongsTo(Event::class, 'event');
     }
-
 }
