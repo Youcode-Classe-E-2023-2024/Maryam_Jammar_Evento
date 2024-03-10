@@ -67,25 +67,21 @@ class ReservationController extends Controller
     public function buy($id)
     {
         $user = Auth::user();
-
         $event = Event::find($id);
 
         if ($event && $event->nbr_place > 0) {
             $event->nbr_place -= 1;
-
             $event->save();
 
             Mail::to($user->email)->send(new TicketReservation($event, $user));
 
             Session::flash('success', 'Your reservation has been confirmed. An email has been sent to you.');
 
-
             return redirect('/');
         } else {
             return back()->with('error', 'No places available for reservation.');
         }
     }
-
     public function CheckReservation()
     {
         $events = Reserver::where('status', 'En attente')->get();
