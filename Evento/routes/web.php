@@ -86,6 +86,9 @@ Route::get('/allusers', [UserController::class, 'show']);
 //    return view('organiser.createEvent');
 //});
 
+//search
+Route::post('/search', [EventController::class, 'search']);
+
 //events
 Route::get('/createEvent', [EventController::class, 'showForm']);
 

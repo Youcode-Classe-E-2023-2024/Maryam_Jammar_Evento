@@ -12,7 +12,7 @@
 <!-- Create By Joker Banny -->
 <body class="bg-white px-12">
 <header>
-@include('side')
+    @include('side')
     <!-- component -->
     <div class="flex justify-between mx-auto p-2.5 flex rounded-full bg-[#0d1829] px-2 w-full max-w-[600px]">
         {{--        <button class="self-center flex p-1 cursor-pointer bg-[#0d1829]">--}}
@@ -131,9 +131,8 @@
     <section>
         <h1 class="text-3xl font-bold text-gray-600 mb-10">Explore exotic locations in Finland</h1>
         <div class="grid sm:grid-cols-3 gap-4 grid-cols-2">
-{{--            <div class="flex flex-col">--}}
+            @if (count($events) > 0)
                 @foreach($events as $event)
-
                     <div
                         class="text-white relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-gray-500"
                         style="background-image: url({{$event->image}});">
@@ -143,8 +142,8 @@
                             <a rel="noopener noreferrer" href="#"
                                class="px-3 py-2 text-lg font-semibold tracki uppercase dark:text-gray-100 bgundefined">{{$event->title}}</a>
                             <div class="flex flex-col justify-start text-center dark:text-gray-100">
-                                    <span
-                                        class="text-3xl font-semibold leadi tracki">{{ \Carbon\Carbon::parse($event->date)->format('j') }}</span>
+                                                                <span
+                                                                    class="text-3xl font-semibold leadi tracki">{{ \Carbon\Carbon::parse($event->date)->format('j') }}</span>
                                 <span
                                     class="leadi uppercase">{{ \Carbon\Carbon::parse($event->date)->format('F') }}</span>
                             </div>
@@ -166,12 +165,16 @@
                                 </div>
                             </div>
                     </div>
-                @endforeach
-                <div class="pt-4">
-                    {{$events->links()}}
-                </div>
 
-{{--            </div>--}}
+                @endforeach
+            @else
+                <p>Résultat non trouvé.</p>
+            @endif
+
+            <div class="pt-4">
+                {{$events->links()}}
+            </div>
+
         </div>
         <hr class="w-40 my-14 border-4 rounded-md sm:mx-0 mx-auto"/>
     </section>

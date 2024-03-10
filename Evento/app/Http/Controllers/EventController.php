@@ -203,4 +203,27 @@ class EventController extends Controller
 
         return redirect()->back();
     }
+
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+        $LatestEvents = Event::limit(5)->where('status', 'Public')->get();
+
+        $searchTerm = $request->input('search');
+
+//        $events = Event::where('status', 'Public')
+//            ->where('title', 'like', '%' . $searchTerm . '%')
+//            ->orWhere('location', 'like', '%' . $searchTerm . '%')
+//            ->paginate(6);
+
+        $events = Event::where('status', 'Public')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('location', 'like', '%' . $searchTerm . '%');
+            })
+            ->paginate(6);
+
+        return view('welcome', compact('events', 'categories', 'LatestEvents'));
+    }
 }
+
