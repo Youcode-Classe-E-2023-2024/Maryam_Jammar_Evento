@@ -131,3 +131,7 @@ Route::get('/paiement/{id}', [ReservationController::class, 'paiement']);
 
 
 Route::post('/buy/{id}', [ReservationController::class, 'buy']);
+//Route::get('/reservations', function () {
+//    return view('organiser.reservations');
+//});
+Route::get('/reservations', [ReservationController::class, 'CheckReservation']);
