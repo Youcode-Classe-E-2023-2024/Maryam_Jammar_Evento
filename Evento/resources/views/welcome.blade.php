@@ -14,13 +14,10 @@
 <header>
     @include('side')
     <!-- component -->
-    <div class="flex justify-between mx-auto p-2.5 flex rounded-full bg-[#0d1829] px-2 w-full max-w-[600px]">
+    <div class="flex justify-between mx-auto p-2.5 flex rounded-full bg-[#0d1829] px-2 w-full max-w-[600px]">+
         <div class="flex justify-between mx-auto text-gray-400 space-x-4">
             @foreach($categories as $category)
-{{--                <button>{{$category->name}}</button>--}}
-{{--                <a href="{{ route('events.filter', ['category' => $category->id]) }}" class="text-white hover:text-gray-200">{{$category->name}}</a>--}}
                 <a href="/filter/{{$category->name}}" class="text-white hover:text-gray-200 hover:text-gray-200">{{$category->name}}</a>
-
             @endforeach
         </div>
     </div>
