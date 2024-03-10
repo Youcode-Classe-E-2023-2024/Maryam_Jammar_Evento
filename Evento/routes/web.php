@@ -135,3 +135,7 @@ Route::post('/buy/{id}', [ReservationController::class, 'buy']);
 //    return view('organiser.reservations');
 //});
 Route::get('/reservations', [ReservationController::class, 'CheckReservation']);
+
+//aprove or decline
+Route::post('/approve-reservation/{id}', [ReservationController::class, 'approveReservation']);
+Route::post('/decline-reservation/{id}', [ReservationController::class, 'declineReservation']);
