@@ -62,7 +62,9 @@ Route::get('/approveEvents', function () {
     return view('admin.approveEvents');
 });
 
-Route::get('/organisateur', function () {
+Route::get('/organizer', [UserController::class, 'statistic']);
+
+Route::post('/organizer', function () {
     return view('organiser.dashboard');
 });
 

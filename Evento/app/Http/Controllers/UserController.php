@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Pagination\Paginator;
 
@@ -26,9 +27,18 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function statistic()
     {
-        //
+        $organizer = Auth::user();
+
+        $totalEvents = Event::where('creator', $organizer->id)->count();
+        $publicEvents = Event::where('creator', $organizer->id)
+            ->where('status', 'Public')->count();
+        $LatestEvents = Event::limit(3)->where('creator', $organizer->id)->get();
+
+//        dd($totalEvents);
+
+        return view('organiser.dashboard', compact('totalEvents', 'publicEvents', 'LatestEvents'));
     }
 
     /**
