@@ -15,9 +15,9 @@
     @include('side')
     <!-- component -->
     <div class="flex justify-between mx-auto p-2.5 flex rounded-full bg-[#0d1829] px-2 w-full max-w-[600px]">+
-        <div class="flex justify-between mx-auto text-gray-400 space-x-4">
+        <div class="flex justify-between mx-auto text-gray-400 space-x-8">
             @foreach($categories as $category)
-                <a href="/filter/{{$category->name}}" class="text-white hover:text-gray-200 hover:text-gray-200">{{$category->name}}</a>
+                <a href="/filter/{{$category->name}}" class="text-gray-200 hover:text-gray-500 hover:text-gray-200">{{$category->name}}</a>
             @endforeach
         </div>
     </div>
