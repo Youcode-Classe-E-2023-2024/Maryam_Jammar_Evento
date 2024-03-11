@@ -93,4 +93,19 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User deleted successfully!');
 
     }
+
+    public function restoreUser($id)
+    {
+        $user = User::withTrashed()->find($id);
+        $user->restore();
+        return redirect()->back()->with('success', 'User restored successfully!');
+
+    }
+
+    public function showDeletedUsers()
+    {
+        $users = User::onlyTrashed()->get();
+
+        return view('admin.deletedUsers', compact('users'));
+    }
 }
