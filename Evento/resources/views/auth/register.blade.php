@@ -87,7 +87,7 @@
                                 </label>
                             </div>
                             <div class="flex items-center">
-                                <input type="radio" name="role" value="automatic" id="radioButton2"
+                                <input type="radio" name="role" value="client" id="radioButton2"
                                        class="h-5 w-5"/>
                                 <label for="radioButton2" class="pl-3 text-base font-medium">
                                     Client

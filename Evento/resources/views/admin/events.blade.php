@@ -8,8 +8,11 @@
         <main>
             <div
                 class="flex flex-col space-y-4 min-w-screen h-screen animated fadeIn faster  fixed flex justify-center items-center inset-0  outline-none focus:outline-none bg-white">
+
                 @foreach($events as $event)
                     <div class="flex flex-col p-8 bg-gray-200 shadow-md hover:shodow-lg rounded-2xl">
+                        <p class="text-md mb-4 text-gray-600 leading-none mt-1">Accepter de publier cette évènement</p>
+
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -34,14 +37,14 @@
                             <form action="/approve-event/{{$event->id}}" method="POST">
                                 @csrf
                                 <button type="submit"
-                                    class="flex-no-shrink bg-green-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-500 text-white rounded-full">
+                                    class="flex-no-shrink bg-green-800 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-800 text-white rounded-full">
                                     Publish
                                 </button>
                             </form>
                             <form action="/decline-event/{{$event->id}}" method="POST">
                                 @csrf
                                 <button type="submit"
-                                    class="flex-no-shrink bg-red-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-500 text-white rounded-full">
+                                    class="flex-no-shrink bg-red-800 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-red-800 text-white rounded-full">
                                     Decline
                                 </button>
                             </form>

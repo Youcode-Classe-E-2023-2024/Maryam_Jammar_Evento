@@ -86,7 +86,7 @@
                                             <p class="py-1 flex justify-around text-center items-center justify-center text-gray-900 whitespace-no-wrap">
                                                 <button data-modal-target="crud-modal-{{$user->id}}"
                                                         data-modal-toggle="crud-modal-{{$user->id}}"
-                                                        class="block text-white bg-black hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                        class="block text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                         type="button">
                                                     Edit role
                                                 </button>
@@ -94,7 +94,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit"
-                                                        class="mt-3 block text-white bg-black hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                        class="mt-3 block text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                                     Delete user
                                                 </button>
                                             </form>

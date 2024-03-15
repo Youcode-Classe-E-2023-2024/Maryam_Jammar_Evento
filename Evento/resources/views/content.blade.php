@@ -17,30 +17,11 @@
                 <div class="w-full pl-12 text-justify lg:w-6/12">
                     <div class="flex justify-between mr-8">
                         <h1 class="text-4xl font-bold mb-4">{{$event->title}}</h1>
-                        <div class="relative">
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer menuIcon"
-                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-width="3"
-                                      d="M12 6h0m0 6h0m0 6h0"/>
-                            </svg>
-                            <div
-                                class="hidden absolute top-0 right-0 mt-6 mr-2 flex flex-col font-bold menuOptions">
-                                <div class="flex">
-                                    <a href="/updateEvent/{{$event->id}}" class="mr-2">Update</a>
-                                </div>
-                                <form action="/deleteEvent/{{$event->id}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                     <div class="mb-6">
                         <p class="text-xl font-bold ">Date:</p>
                         <p class="text-lg">
-                            {{ \Carbon\Carbon::parse($event->date)->format('l, F jS \a\t h:i A') }}
+                            {{ \Carbon\Carbon::parse($event->date)->format('l, F jS \a\t h:m A') }}
                         </p>
                     </div>
                     <div class="mb-6">
@@ -57,17 +38,44 @@
                     </div>
                     <div class="mb-6">
                         <p class="text-xl font-bold">Tickets:</p>
+{{--                        <p class="text-lg">Category: {{ $event->category->name }}</p>--}}
                         <p class="text-lg">Place disponible: {{$event->nbr_place}} place</p>
                         <p class="text-lg">Price: {{$event->price}} DH</p>
                     </div>
-                    <form action="/paiement/{{$event->id}}" method="post">
-                        @csrf
-                        <button
-                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit">
-                            Buy Now !
-                        </button>
-                    </form>
+                    <div class="flex space-x-2">
+                        @if ($event->nbr_place <= 0)
+{{--                            <button class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-lg px-16 py-2.5 text-center me-2 mb-2">--}}
+{{--                                Sold Out !--}}
+{{--                            </button>--}}
+                            <button type="button" class="text-yellow-600 hover:text-white border border-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-700 font-medium rounded-lg text-lg px-16 py-4 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">
+                                Solde Out !
+                            </button>
+
+                        @else
+                            <form action="/paiement/{{$event->id}}" method="post">
+                                @csrf
+                                <button class="bg-yellow-700 hover:bg-yellow-600 text-white font-bold py-4 px-16 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                    Buy Now!
+                                </button>
+                            </form>
+                        @endif
+                        @if (auth()->check() && auth()->user()->hasRole('organizer'))
+                            <a href="/updateEvent/{{$event->id}}"
+                               class="bg-black h-11 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            >
+                                Edit Ticket
+                            </a>
+                            <form action="/deleteEvent/{{$event->id}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button
+                                    class="bg-black hover:bg-black text-white font-bold py-2.5 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="submit">
+                                    Delete Ticket
+                                </button>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
             <h2 class="font-bold text-2xl mt-4">Event description</h2>
@@ -144,40 +152,36 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 @if(Session::has('info'))
-    <div id="alert-message" class="w-1/2 left-1/2 bg-blue-100 border bottom-2/4 border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+    <div id="alert-message"
+         class="w-1/2 left-1/2 bg-blue-100 border bottom-2/4 border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+         role="alert">
         <strong class="font-bold">Info:</strong>
         <span class="block sm:inline">{{ Session::get('info') }}</span>
         <span id="close-alert" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
             <svg class="fill-current h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <title>Close</title>
-                <path fill-rule="evenodd" d="M14.354 5.354a2 2 0 00-2.828 0L10 7.172 7.172 5.354a2 2 0 00-2.828 2.828L7.172 10 5.354 12.828a2 2 0 102.828 2.828L10 12.828l2.828 2.828a2 2 0 102.828-2.828L12.828 10l2.828-2.828a2 2 0 000-2.828z" clip-rule="evenodd" />
+                <path fill-rule="evenodd"
+                      d="M14.354 5.354a2 2 0 00-2.828 0L10 7.172 7.172 5.354a2 2 0 00-2.828 2.828L7.172 10 5.354 12.828a2 2 0 102.828 2.828L10 12.828l2.828 2.828a2 2 0 102.828-2.828L12.828 10l2.828-2.828a2 2 0 000-2.828z"
+                      clip-rule="evenodd"/>
             </svg>
         </span>
     </div>
 @endif
 
 @if(Session::has('success'))
-    <div id="alert-message" class="w-1/2 left-1/2 bg-blue-100 border bottom-2/4 border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+    <div id="alert-message"
+         class="w-1/2 left-1/2 bg-blue-100 border bottom-2/4 border-blue-400 text-blue-700 px-4 py-3 rounded relative"
+         role="alert">
         <strong class="font-bold">Info:</strong>
         <span class="block sm:inline">{{ Session::get('success') }}</span>
         <span id="close-alert" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer">
             <svg class="fill-current h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <title>Close</title>
-                <path fill-rule="evenodd" d="M14.354 5.354a2 2 0 00-2.828 0L10 7.172 7.172 5.354a2 2 0 00-2.828 2.828L7.172 10 5.354 12.828a2 2 0 102.828 2.828L10 12.828l2.828 2.828a2 2 0 102.828-2.828L12.828 10l2.828-2.828a2 2 0 000-2.828z" clip-rule="evenodd" />
+                <path fill-rule="evenodd"
+                      d="M14.354 5.354a2 2 0 00-2.828 0L10 7.172 7.172 5.354a2 2 0 00-2.828 2.828L7.172 10 5.354 12.828a2 2 0 102.828 2.828L10 12.828l2.828 2.828a2 2 0 102.828-2.828L12.828 10l2.828-2.828a2 2 0 000-2.828z"
+                      clip-rule="evenodd"/>
             </svg>
         </span>
     </div>
 @endif
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const closeAlertBtn = document.getElementById('close-alert');
-        const alertMessage = document.getElementById('alert-message');
-
-        if (closeAlertBtn && alertMessage) {
-            closeAlertBtn.addEventListener('click', function () {
-                alertMessage.style.display = 'none';
-            });
-        }
-    });
-</script>

@@ -14,7 +14,6 @@
             <div class="max-w-screen-xl p-5 mx-auto dark:bg-gray-800 dark:text-gray-100">
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-4 sm:grid-cols-2">
                     @foreach($events as $event)
-
                         <div
                             class="text-white relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-gray-500"
                             style="background-image: url({{$event->image}});">
@@ -49,6 +48,10 @@
                                 <div class="right-0 flex space-x-4">
                                     <p>Status: </p>
                                     <p class="underline"> {{$event->status}}</p>
+                                </div>
+                                <div class="right-0 flex space-x-4">
+                                    <p>Reservation type: </p>
+                                    <p class="underline"> {{$event->reservation_type}}</p>
                                 </div>
                         </div>
                     @endforeach

@@ -5,11 +5,12 @@
 @include('organiser.side')
 
 <main class="ml-60 pt-16 max-h-screen overflow-auto">
-    <div class="text-xl font-bold text-center">Here you can create your events</div>
+    <div class="text-xl font-bold text-center">Here you can approve your reservations</div>
     <div
-        class="flex flex-wrap mt-12 min-w-screen h-screen justify-around items-center outline-none focus:outline-none ">
+        class="flex flex-wrap min-w-screen h-screen justify-around items-center outline-none focus:outline-none ">
         @foreach($events as $event)
             <div class="flex flex-col mb-6 p-8 bg-gray-200 shadow-md hover:shodow-lg rounded-2xl">
+                Accepter cette reservation ?
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg"

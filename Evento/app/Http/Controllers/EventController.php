@@ -27,9 +27,12 @@ class EventController extends Controller
     }
 
 
+    //my events
     public function AllEvents()
     {
-        $events = Event::all();
+        $user = Auth::user()->id;
+
+        $events = Event::all()->where('creator', $user);
 
         return view('organiser.allEvents', compact('events'));
     }
@@ -49,8 +52,11 @@ class EventController extends Controller
 
     public function EventContent($id)
     {
+//        $event = Event::with('category')->find($id);
         $event = Event::find($id);
-        return view('content', compact('event'));
+        $userRole = "organizer";
+
+        return view('content', compact('event', 'userRole'));
     }
 
     /**

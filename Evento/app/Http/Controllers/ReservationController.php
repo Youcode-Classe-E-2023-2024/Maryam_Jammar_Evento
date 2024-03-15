@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade;
+
 //use Barryvdh\DomPDF\PDF;
 use Barryvdh\DomPDF\Facade\Pdf;
+
 //use PDF;
 use App\Mail\ConfirmReservation;
 use App\Mail\ContinueReservation;
@@ -24,6 +26,7 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //paiement automatic
     public function paiement($id)
     {
         $user = Auth::user();
@@ -51,20 +54,25 @@ class ReservationController extends Controller
             $reservation->status = 'Reservée';
             $reservation->save();
 
+//            Mail::to($user->email)->send(new ConfirmReservation($event, $user));
+
             return view('paiement', compact('event'));
         }
     }
 
 
-    public function paiementLink($id){
+    //paiment link par email
+    public function paiementLink($id)
+    {
         $reservation = Reserver::find($id);
         $event = $reservation->event()->first();
 
-        if ($reservation->status == 'Acceptée'){
+        if ($reservation->status == 'Acceptée') {
             return view('paiement', compact('reservation', 'event'));
         }
 
     }
+
     /***
      * Envoyer un email apres la reservation
      */
@@ -79,7 +87,7 @@ class ReservationController extends Controller
 
             // Générer le PDF
             $pdf = PDF::loadView('pdf.ticket', compact('event', 'user'));
-            $pdfPath = storage_path('app/public/pdfs/ticket_'.$event->id.'.pdf');
+            $pdfPath = storage_path('app/public/pdfs/ticket_' . $event->id . '.pdf');
 
             // Enregistrer le PDF localement
             $pdf->save($pdfPath);
@@ -99,6 +107,10 @@ class ReservationController extends Controller
 
     public function CheckReservation()
     {
+//        $events = Event::whereHas('reservations', function ($query) {
+//            $query->where('status', 'En attente');
+//        })->get();
+
         $events = Reserver::where('status', 'En attente')->get();
 
         return view('organiser.reservations', compact('events'));
@@ -112,7 +124,7 @@ class ReservationController extends Controller
 
         $reservation->status = 'Acceptée';
         $reservation->save();
-
+//        dd($reservation);
         Mail::to($user->email)->send(new ContinueReservation($reservation, $user, $event));
 
         return redirect()->back();
@@ -124,23 +136,10 @@ class ReservationController extends Controller
         $event = Reserver::findOrFail($id);
         $event->status = 'Refusée';
         $event->save();
+//        dd($event);
 
         return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

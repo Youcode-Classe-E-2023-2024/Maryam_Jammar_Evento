@@ -25,22 +25,7 @@
                              alt="Windster Logo">
                         <span class="self-center whitespace-nowrap">Evento</span>
                     </a>
-                    <form action="#" method="GET" class="hidden lg:block lg:pl-32">
-                        <label for="topbar-search" class="sr-only">Search</label>
-                        <div class="mt-1 relative lg:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                          clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <input type="text" name="email" id="topbar-search"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5"
-                                   placeholder="Search">
-                        </div>
-                    </form>
+
                 </div>
                 <div class="flex items-center">
                     <button id="toggleSidebarMobileSearch" type="button"
@@ -52,25 +37,12 @@
                                   clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <div class="hidden lg:flex items-center">
-                        <span class="text-base font-normal text-gray-500 mr-5">Open source ❤️</span>
-                        <div class="-mb-1">
-                            <a class="github-button" href="#"
-                               data-color-scheme="no-preference: dark; light: light; dark: light;"
-                               data-icon="octicon-star" data-size="large" data-show-count="true"
-                               aria-label="Star themesberg/windster-tailwind-css-dashboard on GitHub">Star</a>
+                    <div class="flex space-x-3 items-center">
+                        <div class="flex-shrink-0 w-10 h-10 ">
+                            <img class="w-full h-full rounded-full" src="{{ auth()->user()->picture }}">
                         </div>
+                        <div class="font-semibold">{{ auth()->user()->name }}</div>
                     </div>
-                    <a href="#"
-                       class="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-3">
-                        <svg class="svg-inline--fa fa-gem -ml-1 mr-2 h-4 w-4" aria-hidden="true" focusable="false"
-                             data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 512 512">
-                            <path fill="currentColor"
-                                  d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6 224H1.365L244.3 474.9z"></path>
-                        </svg>
-                        Upgrade to Pro
-                    </a>
                 </div>
             </div>
         </div>
@@ -115,12 +87,11 @@
                             <li>
                                 <a href="/categories"
                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg
-                                        class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                              clip-rule="evenodd"></path>
+                                    <svg class="group-hover:text-gray-900 w-6 h-6 text-gray-500 dark:text-white"
+                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path
+                                            d="M5 13.2a3 3 0 0 0 0 5.6V20a1 1 0 1 0 2 0v-1.2a3 3 0 0 0 0-5.6V4a1 1 0 0 0-2 0v9.2Zm6 6.8v-9.2a3 3 0 0 1 0-5.6V4a1 1 0 1 1 2 0v1.2a3 3 0 0 1 0 5.6V20a1 1 0 1 1-2 0Zm6-1.2V20a1 1 0 1 0 2 0v-1.2a3 3 0 0 0 0-5.6V4a1 1 0 1 0-2 0v9.2a3 3 0 0 0 0 5.6Z"/>
                                     </svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Categories</span>
                                 </a>
@@ -128,12 +99,11 @@
                             <li>
                                 <a href="/allusers"
                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg
-                                        class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                              clip-rule="evenodd"></path>
+                                    <svg class="group-hover:text-gray-900 w-6 h-6 text-gray-500 dark:text-white"
+                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                         viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                              d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3a2.5 2.5 0 1 1 2-4.5M19.5 17h.5c.6 0 1-.4 1-1a3 3 0 0 0-3-3h-1m0-3a2.5 2.5 0 1 0-2-4.5m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3c0 .6-.4 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
                                     </svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
                                 </a>
@@ -141,14 +111,14 @@
                             <li>
                                 <a href="/events"
                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg
-                                        class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                              d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                                              clip-rule="evenodd"></path>
+                                    <svg class="group-hover:text-gray-900 w-6 h-6 text-gray-500 dark:text-white"
+                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                         viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"
+                                              d="M6 8v8m0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V9a3 3 0 0 0-3-3h-3m1.5-2-2 2 2 2"/>
                                     </svg>
-                                    <span class="ml-3 flex-1 whitespace-nowrap">Events</span>
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Approve Events</span>
                                 </a>
                             </li>
                         </ul>

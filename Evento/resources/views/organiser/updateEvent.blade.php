@@ -57,7 +57,7 @@
                                             Time
                                         </label>
                                         <input type="time" name="time" id="time" value="{{$event['time']}}"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                         </label>
                                         <input type="number" name="price" placeholder="245.00"
                                                value="{{$event['price']}}"
-                                               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
+                                               readonly  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"/>
                                     </div>
                                 </div>
                                 <div class="w-full px-3 sm:w-1/2">

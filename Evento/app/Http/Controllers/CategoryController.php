@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Category;
+use App\Models\Reserver;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -44,4 +45,6 @@ class CategoryController extends Controller
 
         return redirect()->back();
     }
+
+
 }
